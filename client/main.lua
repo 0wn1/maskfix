@@ -76,6 +76,7 @@ local function Initialize()
 end
 
 local function Restore(Name)
+	local Resource = GetCurrentResourceName()
 	if Resource ~= Name then return end
 
 	local Ped = PlayerPedId()
