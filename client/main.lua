@@ -75,7 +75,7 @@ local function Initialize()
 	SetTimeout(999, Initialize)
 end
 
-local function Unload(Name)
+local function Restore(Name)
 	if Resource ~= Name then return end
 
 	local Ped = PlayerPedId()
@@ -93,6 +93,7 @@ local function Unload(Name)
 end
 
 CreateThread(Initialize)
-AddEventHandler('onResourceStop', Unload)
+AddEventHandler('onResourceStop', Restore)
+AddEventHandler('onClientResourceStop', Restore)
 
 Log('SUCCESS', 'Initialized', 'System ready')
