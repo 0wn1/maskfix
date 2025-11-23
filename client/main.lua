@@ -4,12 +4,12 @@ local Invoke, Int, Float, Saved, Values = Citizen.InvokeNative, Citizen.PointerV
 
 for i = 1, 9 do Values[i] = (i < 7) and Int(0) or Float(0) end; local HeadBlendData = { Invoke(0x2746BD9D88C5C5D0, Ped, Unpack(Values)) }
 
-local Resource = GetCurrentResourceName():upper()
+local Resource = GetCurrentResourceName()
 local function Log(Type, Action, Text) 
 	if Config.Debug then 
 		local Colors = { INFO = '^5', SUCCESS = '^2', RESTORE = '^3', ERROR = '^1' }
-		print(('%s[%s]^0 %s%s^0%s'):format(Colors[Type] or '^7', Resource, Colors[Type] or '^7', Action, Text and (' ^7| %s'):format(Text) or '')) 
-	end 
+		print(('%s[%s]^0 %s%s^0%s'):format(Colors[Type] or '^7', Resource:upper(), Colors[Type] or '^7', Action, Text and (' ^7| %s'):format(Text) or '')) 
+	end
 end
 
 local function Initialize()
@@ -76,7 +76,6 @@ local function Initialize()
 end
 
 local function Restore(Name)
-	local Resource = GetCurrentResourceName()
 	if Resource ~= Name then return end
 
 	local Ped = PlayerPedId()
